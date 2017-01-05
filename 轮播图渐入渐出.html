@@ -15,10 +15,7 @@
             margin: 150px auto;
             position: relative;
         }
-       
-        #contianer img{
-            display: none;
-        }
+
         #tab{
             list-style: none;
             position: absolute;
@@ -42,8 +39,10 @@
 
         }
 
-        #imgs .selected{
-            display: block;
+        #imgs img{
+            position: absolute;
+            left:0;
+            top:0;
         }
         #arrows{
             position: absolute;
@@ -65,37 +64,39 @@
 </head>
 <body>
 
-    <div id="contianer">
-        <div id="imgs">
-            <img src="./2.jpg" class="selected" alt="加载失败" title="2"></img>
-            <img src="./3.jpg" ></img>
-            <img src="./4.jpg" ></img>
-            <img src="./5.jpg" ></img>
-        </div>
-        <ul id="tab">
-            <li class="selected">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-        </ul>
+<div id="contianer">
+    <div id="imgs">
+        <img src="./2.jpg" class="selected" style="z-index: 4"></img>
+        <img src="./3.jpg" style="z-index: 3"></img>
+        <img src="./4.jpg" style="z-index: 2"></img>
+        <img src="./5.jpg" style="z-index: 1"></img>
+    </div>
+    <ul id="tab" style="z-index: 99999">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
 
-        <span id="arrows">
+    <span id="arrows" style="z-index:99999">
             <span id="back">&lt;</span>
             <span id="next">&gt;</span>
         </span>
-    </div>
+</div>
 
+    <script src="./Lib/jslib.js"></script>
     <script>
         var oImg = document.getElementById('imgs');
         var oImgs = oImg.getElementsByTagName('img');
         var oLi = document.getElementById('tab');
         var oLis = oLi.getElementsByTagName('li');
         var curPic=0;
+        var iZIndex = 4;
         var oBack = document.getElementById('back');
         var oNext = document.getElementById('next');
         var oContianer = document.getElementById('contianer');
         var oTimer;
-        
+
         for(var i=0;i<oLis.length;i++){
             oLis[i].index = i;
             oLis[i].onmouseover = function () {
@@ -126,7 +127,6 @@
 
         play();
 
-
         function changImg() {
             for(var i=0;i<oImgs.length;i++){
                 oImgs[i].className = '';
@@ -134,9 +134,14 @@
             }
             oImgs[curPic].className = 'selected';
             oLis[curPic].className = 'selected';
+            oImgs[curPic].style.zIndex = ++iZIndex;
+            oImgs[curPic].style.opacity = 0;
+            oImgs[curPic].style.filter = 'Alpha(opacity=0)'
+            animate(oImgs[curPic],{opacity : 100});
         }
         function play() {
             oTimer = setInterval(oNext.onclick,1000);
+
         }
         function pause() {
             clearInterval(oTimer);
