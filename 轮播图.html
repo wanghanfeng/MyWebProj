@@ -3,12 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <title>轮播图</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #contianer {
+            height: 340px;
+            width: 790px;
+            margin: 150px auto;
+            position: relative;
+        }
+       
+        #contianer img{
+            display: none;
+        }
+        #tab{
+            list-style: none;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        #tab li{
+            background: black;
+            color: white;
+            width: 30px;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+            float: left;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #tab .selected{
+            background: orange;
+
+        }
+
+        #imgs .selected{
+            display: block;
+        }
+        #arrows{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+        #arrows span{
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: black;
+            color: white;
+            float: left;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
     <div id="contianer">
+        <div id="imgs">
+            <img src="./2.jpg" class="selected" alt="加载失败" title="2"></img>
+            <img src="./3.jpg" ></img>
+            <img src="./4.jpg" ></img>
+            <img src="./5.jpg" ></img>
+        </div>
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
 
+        <span id="arrows">
+            <span id="back">&lt;</span>
+            <span id="next">&gt;</span>
+        </span>
     </div>
 
+    <script>
+        var oImg = document.getElementById('imgs');
+        var oImgs = oImg.getElementsByTagName('img');
+        var oLi = document.getElementById('tab');
+        var oLis = oLi.getElementsByTagName('li');
+        var curPic=0;
+        var oBack = document.getElementById('back');
+        var oNext = document.getElementById('next');
+        var oContianer = document.getElementById('contianer');
+        var oTimer;
+        
+        for(var i=0;i<oLis.length;i++){
+            oLis[i].index = i;
+            oLis[i].onmouseover = function () {
+                curPic = this.index;
+                changImg();
+            }
+        }
+
+        oNext.onclick = function () {
+            curPic++;
+            curPic = (curPic==oLis.length) ? 0 : curPic;
+            changImg();
+        }
+
+        oBack.onclick = function () {
+            curPic--;
+            curPic = (curPic==-1) ? oImgs.length-1 : curPic;
+            changImg();
+        }
+
+        oContianer.onmouseover = function () {
+            pause();
+        }
+
+        oContianer.onmouseout = function () {
+            play();
+        }
+
+        play();
+
+
+        function changImg() {
+            for(var i=0;i<oImgs.length;i++){
+                oImgs[i].className = '';
+                oLis[i].className = '';
+            }
+            oImgs[curPic].className = 'selected';
+            oLis[curPic].className = 'selected';
+        }
+        function play() {
+            oTimer = setInterval(oNext.onclick,1000);
+        }
+        function pause() {
+            console.log('ss');
+            clearInterval(oTimer);
+        }
+    </script>
 </body>
 </html>
