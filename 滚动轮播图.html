@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滚动轮播图</title>
+
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+        }
+        #container{
+            width: 790px;
+            height: 340px;
+            overflow: hidden;
+            position: relative;
+            margin: 200px auto;
+        }
+        #container ul{
+            list-style: none;
+            width: 4740px;
+            height: 340px;
+            position: relative;
+            float: left;
+        }
+        #container li{
+            float: left;
+        }
+        img{
+            width: 790px;
+            height: 340px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <ul id="ul1">
+            <li><img id="img1" src="2.jpg"></img></li>
+            <li><img id="img2" src="3.jpg"></img></li>
+            <li><img id="img3" src="4.jpg"></img></li>
+            <li><img id="img4" src="2.jpg"></img></li>
+            <li><img id="img5" src="3.jpg"></img></li>
+            <li><img id="img6" src="4.jpg"></img></li>
+        </ul>
+
+
+    </div>
+
+
+    <script src="./Lib/jslib.js"></script>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oUl = document.getElementById('ul1');
+        var oTimer = setInterval(function () {
+            move();
+        },10);
+
+
+        function move(dire) {
+            oUl.style.left = oUl.offsetLeft-2+'px';
+//            console.log(oUl.offsetLeft+'  '+oUl.style.left+" "+oContainer.offsetWidth+' '+oUl.offsetWidth);
+            if((oUl.offsetWidth+oUl.offsetLeft) ==  (oUl.offsetWidth/2)){
+                oUl.style.left = 0+'px';
+//                oUl.appendChild(oChildUl[index++]);
+//                index = (index==3)?0:index;
+            }
+        }
+    </script>
+</body>
+</html>
