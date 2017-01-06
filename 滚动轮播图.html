@@ -30,6 +30,21 @@
             width: 790px;
             height: 340px;
         }
+        #arrows{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+        #arrows span{
+            background: #000;
+            margin-right: 10px;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            line-height: 30px;
+        }
 
     </style>
 </head>
@@ -46,6 +61,10 @@
             <li><img id="img6" src="4.jpg"></img></li>
         </ul>
 
+        <span id="arrows">
+            <span id="back">&lt;</span>
+            <span id="next">&gt;</span>
+        </span>
 
     </div>
 
@@ -54,18 +73,76 @@
     <script>
         var oContainer = document.getElementById('container');
         var oUl = document.getElementById('ul1');
-        var oTimer = setInterval(function () {
-            move();
-        },10);
+        var iPos;
+        var iPicWidth = oUl.offsetWidth/6;
+        var iNow=0;
 
+       var oTimer = setInterval(function () {
+           leftMove();
+        },2000);
 
-        function move(dire) {
-            oUl.style.left = oUl.offsetLeft-2+'px';
-//            console.log(oUl.offsetLeft+'  '+oUl.style.left+" "+oContainer.offsetWidth+' '+oUl.offsetWidth);
-            if((oUl.offsetWidth+oUl.offsetLeft) ==  (oUl.offsetWidth/2)){
+        var oNextBtn = document.getElementById('next');
+        var oBackBtn = document.getElementById('back');
+
+        oContainer.onmouseover = function () {
+            clearInterval(oTimer);
+        }
+        oContainer.onmouseout = function () {
+            oTimer = setInterval(function () {
+                leftMove();
+            },2000);
+        }
+
+        oNextBtn.onclick = oBackBtn.onclick = function () {
+            if (this == oNextBtn){
+                leftMove();
+            }
+            else if (this == oBackBtn){
+                rightMove();
+            }
+        }
+        //左移
+        function leftMove() {
+            --iNow;
+            if (iNow<0){
+                iNow = 3;
+                --iNow;
+                oUl.style.left = -oUl.offsetWidth/2+'px';
+            }
+            iPos = -iNow*iPicWidth;
+
+            animate(oUl,{
+                left:iPos
+            });
+        }
+        //右移
+        function rightMove() {
+            ++iNow;
+            if (iNow>3){
+                iNow = 0;
+                ++iNow;
                 oUl.style.left = 0+'px';
-//                oUl.appendChild(oChildUl[index++]);
-//                index = (index==3)?0:index;
+            }
+            iPos = -iNow*iPicWidth;
+
+            animate(oUl,{
+                left:iPos
+            });
+        }
+
+        //匀速移动 dire为1为左移 为-1右移
+        function move(dire) {
+            if (dire==1){
+                if((oUl.offsetWidth+oUl.offsetLeft) <=  (oUl.offsetWidth/2)){
+                    oUl.style.left = 0+'px';
+                }
+                oUl.style.left = oUl.offsetLeft-2+'px';
+            }
+            else if (dire==-1){
+                if(oUl.offsetLeft >=  0){
+                    oUl.style.left = -oUl.offsetWidth/2+'px';
+                }
+                oUl.style.left = oUl.offsetLeft+2+'px';
             }
         }
     </script>
