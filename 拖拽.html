@@ -5,12 +5,60 @@
     <title>Document</title>
 
     <style>
-        body{
-
+        *{
+            margin: 0;
+            padding: 0;
         }
+
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: #0ee;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: #123456;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
     </style>
 </head>
 <body>
 
+    <div id="div1"></div>
+    <div id="div2"></div>
+
+    <script>
+        var oDiv1 = document.getElementById('div1');
+        var oDiv2 = document.getElementById('div2');
+
+        drag(oDiv1);
+        drag(oDiv2);
+
+        function drag(elem) {
+            elem.onmousedown = function (e) {
+                e = e || window.event;
+                var iDisX = e.clientX - elem.offsetLeft;
+                var iDisY = e.clientY - elem.offsetTop;
+
+                document.onmousemove = function (e) {
+                    elem.style.left = e.clientX - iDisX + 'px';
+                    elem.style.top = e.clientY - iDisY + 'px';
+                    return;
+                }
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+
+
+    </script>
 </body>
 </html>
