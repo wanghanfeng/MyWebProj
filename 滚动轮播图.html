@@ -86,7 +86,6 @@
         }
         #arrows span{
             background: #000;
-            margin-right: 10px;
             color: #fff;
             width: 60px;
             height: 180px;
@@ -94,7 +93,6 @@
             text-align: center;
             font-size: 50px;
             line-height: 180px;
-            opacity: .5;
             border-radius: 10px;
         }
         #back{
@@ -102,12 +100,16 @@
             top: 50%;
             left: 5px;
             margin-top: -90px;
+            opacity: 0;
+            cursor: pointer;
         }
         #next{
             position: absolute;
-            top:50%;
+            top: 50%;
             right: 5px;
             margin-top: -90px;
+            opacity: 0;
+            cursor: pointer;
         }
 
         #indicator .selected{
@@ -186,11 +188,23 @@
 
         oContainer.onmouseover = function () {
             clearInterval(oTimer);
+            animate(oNextBtn,{
+                opacity : 70
+            });
+            animate(oBackBtn,{
+                opacity : 70
+            });
         }
         oContainer.onmouseout = function () {
             oTimer = setInterval(function () {
                 leftMove();
             },2000);
+            animate(oNextBtn,{
+                opacity : 0
+            });
+            animate(oBackBtn,{
+                opacity : 0
+            });
         }
 
         oNextBtn.onclick = oBackBtn.onclick = function () {
