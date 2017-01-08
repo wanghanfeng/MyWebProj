@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #container{
+            width: 1250px;
+            height: 400px;
+            position: relative;
+        }
+        #littleImg{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #block{
+            width: 100px;
+            height: 60px;
+            background: #fff;
+            opacity:0;
+            position: absolute;
+
+        }
+        #bigImg{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 405px;
+            overflow: hidden;
+            display: none;
+        }
+        #srcBig{
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="littleImg">
+            <img src="1.jpg" id="src">
+            <div id="block"></div>
+        </div>
+        <div id="bigImg">
+            <img src="1.jpg" id="srcBig">
+        </div>
+
+    </div>
+
+    <script>
+        var oContainer = document.getElementById('container');
+        var oBlock = document.getElementById('block');
+        var oLittleImg = document.getElementById('littleImg');
+        var oBigImg = document.getElementById('bigImg');
+        var oSrcBig = document.getElementById('srcBig');
+
+        oLittleImg.onmouseover = function (e) {
+            e = e || window.event;
+
+            document.onmousemove = function (e) {
+
+                oBigImg.style.display = "block";
+                oBlock.style.opacity = "0.6";
+                oBlock.style.left = e.clientX - oBlock.offsetWidth/2 + 'px';
+                oBlock.style.top = e.clientY - oBlock.offsetHeight/2 + 'px';
+
+                var iToOffsetX = oBlock.offsetLeft / (oLittleImg.offsetWidth-oBlock.offsetWidth);
+                var iToOffsetY = oBlock.offsetTop / (oLittleImg.offsetHeight-oBlock.offsetHeight);
+
+                oSrcBig.style.left =  -(oSrcBig.offsetWidth-oBigImg.offsetWidth)*iToOffsetX + 'px';
+                oSrcBig.style.top =   -(oSrcBig.offsetHeight-oBigImg.offsetHeight)*iToOffsetY + 'px';
+                return false;
+            }
+        }
+
+        oLittleImg.onmouseout = function () {
+
+            document.onmousemove = null;
+            oBlock.style.opacity = "0";
+            oBigImg.style.display = "none";
+        }
+
+    </script>
+</body>
+</html>
