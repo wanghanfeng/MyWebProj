@@ -3,16 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+
+        .aa.bb{
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+
+        #abc.aa{
+
+        }
+
+
+
+
+    </style>
 </head>
 <body>
 
+
+    <ul role="presentation"></ul>
+    <div class="aa bb" id="abc"></div>
 
     <script>
         var iFrame;
         iFrame = document.createElement('img');
 
         document.body.appendChild(iFrame);
-        console.log(iFrame);
+//        console.log(iFrame);
+
+////        窗口大小改变
+//        window.onresize = function (e) {
+//            e = e || window.event;
+//            console.log(window.innerWidth + '   ' + window.innerHeight);
+//        }
+////按键事件
+//        window.onkeydown = function (e) {
+//            e = e || window.event;
+//            console.log(e);
+//        }
+        console.log('h: ' + screen.availHeight);
+        console.log('freq: ' + screen.updateInterval);
     </script>
+
 </body>
 </html>
