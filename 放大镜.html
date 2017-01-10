@@ -45,6 +45,13 @@
             top: 0;
             left: 0;
         }
+        #mask{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     </style>
 </head>
 <body>
@@ -58,6 +65,8 @@
             <img src="1.jpg" id="srcBig">
         </div>
 
+        <div id="mask"></div>
+
     </div>
 
     <script>
@@ -66,16 +75,35 @@
         var oLittleImg = document.getElementById('littleImg');
         var oBigImg = document.getElementById('bigImg');
         var oSrcBig = document.getElementById('srcBig');
+        var oMask = document.getElementById('mask');
 
-        oLittleImg.onmouseover = function (e) {
+        oMask.onmouseover = function (e) {
             e = e || window.event;
 
             document.onmousemove = function (e) {
 
                 oBigImg.style.display = "block";
                 oBlock.style.opacity = "0.6";
-                oBlock.style.left = e.clientX - oBlock.offsetWidth/2 + 'px';
-                oBlock.style.top = e.clientY - oBlock.offsetHeight/2 + 'px';
+
+                var iTop = e.clientY - oBlock.offsetHeight/2;
+                var iLeft = e.clientX - oBlock.offsetWidth/2;
+
+                if (iTop<0){
+                    iTop = 0;
+                }
+                if (iTop>(oLittleImg.offsetHeight-oBlock.offsetHeight)){
+                    iTop = oLittleImg.offsetHeight-oBlock.offsetHeight;
+                }
+                if (iLeft<0){
+                    iLeft = 0;
+                }
+                if (iLeft>oLittleImg.offsetWidth-oBlock.offsetWidth){
+                    iLeft = oLittleImg.offsetWidth-oBlock.offsetWidth;
+                }
+
+
+                oBlock.style.left = iLeft + 'px';
+                oBlock.style.top = iTop + 'px';
 
                 var iToOffsetX = oBlock.offsetLeft / (oLittleImg.offsetWidth-oBlock.offsetWidth);
                 var iToOffsetY = oBlock.offsetTop / (oLittleImg.offsetHeight-oBlock.offsetHeight);
@@ -86,7 +114,7 @@
             }
         }
 
-        oLittleImg.onmouseout = function () {
+        oMask.onmouseout = function () {
 
             document.onmousemove = null;
             oBlock.style.opacity = "0";
