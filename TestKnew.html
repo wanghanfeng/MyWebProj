@@ -44,8 +44,17 @@
 //            e = e || window.event;
 //            console.log(e);
 //        }
-        console.log('h: ' + screen.availHeight);
-        console.log('freq: ' + screen.updateInterval);
+//        console.log('h: ' + screen.availHeight);
+//        console.log('freq: ' + screen.updateInterval);
+
+        var ws = new WebSocket("ws://localhost:4000");
+        ws.onopen = function(){
+            console.log("握手成功");
+        };
+        ws.onerror = function(){
+            console.log("error");
+        };
+
     </script>
 
 </body>

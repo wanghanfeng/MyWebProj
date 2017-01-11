@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮流播放</title>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+
+    <div id="container">
+        <div id="bigImg">
+            <img src="imgs/1.jpg" alt="">
+            <img src="imgs/2.jpg" alt="">
+            <img src="imgs/3.jpg" alt="">
+            <img src="imgs/4.jpg" alt="">
+            <img src="imgs/5.jpg" alt="">
+            <img src="imgs/6.jpg" alt="">
+            <img src="imgs/7.jpg" alt="">
+            <img src="imgs/8.jpg" alt="">
+
+            <div id="info" style="z-index: 9">
+                <span id="total-page">/8</span>
+                <span id="current-page">1</span>
+            </div>
+
+            <div id="arrows">
+                <span id="pre" style="z-index: 9"></span>
+                <span id="next" style="z-index: 9"></span>
+            </div>
+
+        </div>
+
+        <div id="smallImg">
+            <img src="imgs/1.jpg" alt="">
+            <img src="imgs/2.jpg" alt="">
+            <img src="imgs/3.jpg" alt="">
+            <img src="imgs/4.jpg" alt="">
+            <img src="imgs/5.jpg" alt="">
+            <img src="imgs/6.jpg" alt="">
+            <img src="imgs/7.jpg" alt="">
+            <img src="imgs/8.jpg" alt="">
+        </div>
+    </div>
+
+    <script src="jslib.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>
