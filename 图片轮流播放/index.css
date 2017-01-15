@@ -13,7 +13,9 @@ body{
     width: 570px;
     height: 500px;
     position: relative;
-    overflow: hidden;
+    margin: 100px auto;
+    overflow: hidden
+
 
 }
 

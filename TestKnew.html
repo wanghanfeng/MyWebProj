@@ -16,6 +16,11 @@
 
         }
 
+        .clickToDide{
+            width: 300px;
+            height: 300px;
+            background: #f00;
+        }
 
 
 
@@ -23,16 +28,325 @@
 </head>
 <body>
 
+    <div class="clickToDide"></div>
+    <form id="form">
+        请输入数1：<input type="text" name="val1" >
+        请输入数2：<input type="text" name="val2" >
+        <input type="submit" >
 
-    <ul role="presentation"></ul>
-    <div class="aa bb" id="abc"></div>
+    </form>
 
+    <form id="form1">
+        请输入这个数：<input type="text" name="val1">
+        <input type="submit">
+    </form>
+
+    <script src="./Lib/jquery.js"></script>
     <script>
-        var iFrame;
-        iFrame = document.createElement('img');
 
-        document.body.appendChild(iFrame);
-//        console.log(iFrame);
+        $(".clickToDide").click(function () {
+            $(this).slideUp('slow');
+        });
+
+//        prompt();
+        a();
+        b();
+        console.log(c(10));
+        d(10);
+        e();
+        f();
+        g();
+        h(30);
+        j();
+        k();
+        l();
+        m();
+        p();
+        qq();
+        r();
+
+        function a() {
+
+            var a,b;
+            a = Math.random();
+            b = Math.random();
+            console.log(a>b?a:b);
+
+        }
+        function b() {
+            var today = new Date();
+            var year = today.getFullYear();
+
+            if (((year%4==0)&&year%100!=0)||(year%400==0)){
+                console.log('今年是闰年');
+            }
+            else {
+                console.log('今年不是闰年');
+            }
+        }
+        function c(a) {
+            if (a==1)
+                return 1;
+            else{
+                return a*c(--a);
+            }
+        }
+        function d(a) {
+            var temp=0;
+            while (a){
+                temp += c(a--);
+            }
+            console.log(temp);
+        }
+        function e() {
+            var tem;
+            for (var i=1;i<6;i++){
+                tem = '';
+                for (var j=1;j<=i;j++){
+                    tem = tem + ' ' + j;
+                }
+                console.log(tem);
+            }
+        }
+        function f() {
+            var tem = 5;
+            var arr;
+            for (;tem>0;tem--){
+                arr = '';
+                for (var i=0;i<(tem-1);i++){
+                    arr += ' ';
+                }
+                for (var i=0;i<=(5-tem);i++){
+                    if (i%2==0){
+                        arr += '*';
+                    }
+                    else {
+                        arr += ' ';
+                    }
+                }
+                for (var i=3;i>=0;i--){
+                    arr += arr[i];
+                }
+                console.log(arr);
+            }
+        }
+        function g() {
+            for (var i=100;i<=999;i++){
+                if (((i%4)==2)&&((i%7)==3)&&((i%9)==5)){
+                    console.log('这个数是：'+i);
+                }
+            }
+        }
+        function h(n) {
+            var tem = n;
+            var arr;
+            for (;tem>0;tem--){
+                arr = '';
+                for (var i=0;i<(tem-1);i++){
+                    arr += ' ';
+                }
+                for (var i=0;i<=(n-tem);i++){
+                    if (i%2==0){
+                        arr += '*';
+                    }
+                    else {
+                        arr += ' ';
+                    }
+                }
+                for (var i=n-2;i>=0;i--){
+                    arr += arr[i];
+                }
+                console.log(arr);
+            }
+        }
+
+        function j() {
+
+            var oForm = document.getElementById('form');
+            oForm.onsubmit = function () {
+                var tem = oForm.val1.value > oForm.val2.value ? oForm.val2.value : oForm.val1.value;
+                document.write('最小的数是：'+tem+'<br>');
+                return false;
+            };
+        }
+
+        function k() {
+            var count=0;
+            for (var i=1;i<=1000;i++){
+                if (i%3==0&&i%5==0&&i%7==0){
+                    document.write(' '+i);
+                    count++;
+                    if (count%6==0){
+                        document.write('<br>');
+                    }
+                }
+            }
+
+        }
+
+
+
+        function IsPrime(n) {
+
+            for(var i=2;i<Math.floor(n/2)+1;++i)
+            {
+                // 和比它的一半小数相除，如果都除不尽，证明素数
+                if ( 0 == n % i )
+                {
+                    // 除尽了，合数
+                    return 0;
+                }
+            }
+            return 1; // 都没除尽，素数
+        }
+
+
+        function l() {
+            document.write('<br>' + '素数为：' + '<br>');
+            var count = 0;
+            for (var i=100;i<=1000;i++){
+                if (IsPrime(i)){
+                    document.write(' '+i);
+                    count++;
+                    if (count%6==0){
+                        document.write('<br>');
+                    }
+                }
+            }
+            document.write('<br>');
+        }
+
+        function m() {
+            function digui(n) {
+                var sum=1;
+                for (var i=1;i<=n;i++){
+                    sum *= i;
+                }
+                return sum;
+            }
+            document.write('12!-10! = ' + (digui(12)-digui(10)) + '<br>');
+        }
+
+        function p() {
+            function ff(n) {
+                if (n<=0){
+                    return -1;
+                }
+                if (n==1||n==2){
+                    return 1;
+                }
+                return ff(n-1)+ff(n-2);
+            }
+
+            function ffN(n) {
+                if(n<=0){
+                    return -1;
+                }
+                if (n==1||n==2){
+                    return 1;
+                }
+                var v1,tem;
+                for (var i=3;i<n;i++){
+                   if (i==3){
+                       tem = 1+1;
+                       v1 = 1;
+                   }
+                   else {
+                       v1 = tem;
+                       tem = tem + v1;
+                   }
+                }
+                return tem+v1;
+            }
+
+            document.write('第N项的值为(递归方式)：' + ff(10) + '<br>');
+            document.write('第N项的值为(非递归方式)：' + ff(10) + '<br>');
+        }
+
+        function qq() {
+            function q(n) {
+                var sum=0;
+                for (var i=1;i<=n;i++){
+                    sum += ((i%2==1)?1:-1) * (1/(2*i-1));
+                }
+                return sum*4;
+            }
+            document.write('100: ' + q(100) + '<br>');
+            document.write('500: ' + q(500) + '<br>');
+            document.write('1000: ' + q(1000) + '<br>');
+            document.write('10000: ' + q(10000) + '<br>');
+        }
+
+        function r() {
+            var oForm = document.getElementById('form1');
+            var num;
+            oForm.onsubmit = function () {
+                num = oForm.val1.value;
+                document.write('平方：' + Math.pow(num,2) +' 平方根：'+Math.sqrt(num)+' 自然对数 ：'+Math.log(num)+"<br>");
+                return false;
+            };
+            
+            function getRandom(low,high) {
+                return Math.floor(Math.random() * (high-low+1)) + low;
+            }
+
+            document.write(getRandom(0,100)+'<br>');
+
+            var date = new Date();
+            var year = date.getFullYear();
+            var mon = date.getMonth();
+            var day = date.getDay();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+            var sec = date.getSeconds();
+            document.write('现在是'+year+"年"+mon+'月'+day+"日"+hour+"时"+ min+"分"+sec+"秒"+"<br>");
+
+            function CollectDigits(s) {
+                var str = '';
+                for (var i=0;i<s.length;i++){
+                    if (s[i]>='0'&&s[i]<='9'){
+                        str += s[i];
+                    }
+                }
+                return str;
+            }
+            document.write(CollectDigits('qwe712y4u12g5vj12g5k4b2')+"<br>");
+            
+            
+            function Merge(s1,s2) {
+                var str= '';
+                var len = s1.length>s2.length?s2.length:s1.length;
+                for (var i=0;i<len;i++){
+                    str += s1[i]+s2[i];
+                }
+                var index = s1.length-s2.length;
+                if (index>0){
+                    str += s1.substr(s2.length,index);
+                }
+                else if (index<0){
+                    str += s2.substr(s1.length,-index);
+                }
+                return str;
+            }
+            document.write(Merge('11111111111111','abc'));
+
+
+
+        }
+
+
+//        var iFrame;
+//        iFrame = document.createElement('img');
+//
+//        document.body.appendChild(iFrame);
+//
+//        var aaa;
+//        console.log(5/2);
+//
+//
+//        function abc(a,b,c,d,e,r,f,g) {
+//            console.log(a+b+c+d+e+r+f+g);
+//        }
 
 ////        窗口大小改变
 //        window.onresize = function (e) {
@@ -47,13 +361,14 @@
 //        console.log('h: ' + screen.availHeight);
 //        console.log('freq: ' + screen.updateInterval);
 
-        var ws = new WebSocket("ws://localhost:4000");
-        ws.onopen = function(){
-            console.log("握手成功");
-        };
-        ws.onerror = function(){
-            console.log("error");
-        };
+
+//        var ws = new WebSocket("ws://localhost:4000");
+//        ws.onopen = function(){
+//            console.log("握手成功");
+//        };
+//        ws.onerror = function(){
+//            console.log("error");
+//        };
 
     </script>
 
