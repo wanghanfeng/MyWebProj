@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    background: #6fc387;
+    width: 90%;
+    height: 500px;
+    margin: 50px auto;
+
+}
